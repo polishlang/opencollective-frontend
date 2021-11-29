@@ -654,6 +654,11 @@ type Expense {
   invoiceInfo: String
 
   """
+  The fees payer for this expense
+  """
+  feesPayer: FeesPayer!
+
+  """
   The permissions given to current logged in user for this expense
   """
   permissions: ExpensePermissions!
@@ -1594,6 +1599,21 @@ type ExpenseItem {
   """
   description: String
   url: URL
+}
+
+"""
+All supported expense types
+"""
+enum FeesPayer {
+  """
+  The collective will be responsible for paying the fees
+  """
+  COLLECTIVE
+
+  """
+  The payee will be responsible for paying the fees (they'll be deduced from the total amount)
+  """
+  PAYEE
 }
 
 """
@@ -3323,7 +3343,7 @@ type ContributionStats {
   """
   The contribution amounts over time
   """
-  contributionAmountOverTime: TimeSeriesAmount!
+  contributionAmountOverTime: TimeSeriesAmount
 
   """
   Number of one time contributions
@@ -3353,7 +3373,7 @@ type ExpenseStats {
   """
   The total number of expenses over time
   """
-  expenseAmountOverTime: TimeSeriesAmount!
+  expenseAmountOverTime: TimeSeriesAmount
 
   """
   The daily average paid in expenses
@@ -9541,6 +9561,11 @@ input ProcessExpensePaymentParams {
   2FA code for if the host account has 2FA for payouts turned on.
   """
   twoFactorAuthenticatorCode: String
+
+  """
+  2FA code for if the host account has 2FA for payouts turned on.
+  """
+  feesPayer: FeesPayer = COLLECTIVE
 }
 
 input ExpenseInviteDraftInput {
@@ -9941,7 +9966,7 @@ input PaypalPaymentInput {
   data: JSON
   orderId: String
   subscriptionId: String
-  isNewApi: Boolean
+  isNewApi: Boolean @deprecated(reason: "2021-07-30: Not used anymore")
 }
 
 """

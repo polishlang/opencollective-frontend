@@ -122,6 +122,7 @@ export const expensePageExpenseFieldsFragment = gqlV2/* GraphQL */ `
     createdAt
     invoiceInfo
     requiredLegalDocuments
+    feesPayer
     draft
     items {
       id
@@ -319,6 +320,7 @@ export const expensesListFieldsFragment = gqlV2/* GraphQL */ `
     currency
     type
     requiredLegalDocuments
+    feesPayer
     permissions {
       id
       canDelete
