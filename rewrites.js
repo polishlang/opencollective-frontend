@@ -310,6 +310,10 @@ exports.REWRITES = [
     destination: '/how-it-works',
   },
   {
+    source: '/:action(help|contact)/:formConfirmation(success)?',
+    destination: '/help-and-support',
+  },
+  {
     source: '/member-invitations',
     destination: '/member-invitations',
   },
