@@ -572,7 +572,7 @@ const ExpenseFormBody = ({
                   whiteSpace="nowrap"
                   data-cy="expense-summary-btn"
                   buttonStyle="primary"
-                  disabled={!stepTwoCompleted || !formik.isValid}
+                  disabled={!stepTwoCompleted || !formik.isValid || !hasBaseFormFieldsCompleted}
                   loading={formik.isSubmitting}
                 >
                   {isInvite && !isDraft ? (
